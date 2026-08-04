@@ -9,6 +9,19 @@ export interface DiagnosticTest {
   description: string;
   parameters?: string[];
   teluguName?: string;
+  isIndividualTest?: boolean;
+  profileName?: string;
+}
+
+export interface MedicalTest56Item {
+  no: number;
+  id: string;
+  name: string;
+  teluguName?: string;
+  category: "Pathology" | "Biochemistry" | "Immunology" | "Clinical";
+  profileName: string;
+  price: number;
+  sampleType: string;
 }
 
 export const categories = [
@@ -19,7 +32,67 @@ export const categories = [
   { id: "Clinical", name: "Clinical & Specialized (ప్రత్యేక పరీక్షలు)" },
 ];
 
-export const diagnosticTests: DiagnosticTest[] = [
+// All 56 specific medical tests requested with Telugu translations
+export const medicalTests56: MedicalTest56Item[] = [
+  { no: 1, id: "test-1", name: "Complete Hemogram (CBC)", teluguName: "కంప్లీట్ బ్లడ్ కౌంట్ (CBC)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 250, sampleType: "Whole Blood (EDTA)" },
+  { no: 2, id: "test-2", name: "RBC Count", teluguName: "ఎర్ర రక్త కణాల సంఖ్య (RBC)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 150, sampleType: "Whole Blood (EDTA)" },
+  { no: 3, id: "test-3", name: "Hemoglobin", teluguName: "హిమోగ్లోబిన్ (రక్త పరిమాణం)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 100, sampleType: "Whole Blood (EDTA)" },
+  { no: 4, id: "test-4", name: "PCV (HCT)", teluguName: "పాక్డ్ సెల్ వాల్యూమ్ (PCV)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 150, sampleType: "Whole Blood (EDTA)" },
+  { no: 5, id: "test-5", name: "MCV", teluguName: "మీన్ కార్పస్కులర్ వాల్యూమ్ (MCV)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 150, sampleType: "Whole Blood (EDTA)" },
+  { no: 6, id: "test-6", name: "MCH", teluguName: "మీన్ కార్పస్కులర్ హిమోగ్లోబిన్ (MCH)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 150, sampleType: "Whole Blood (EDTA)" },
+  { no: 7, id: "test-7", name: "MCHC", teluguName: "మీన్ కార్పస్కులర్ హిమోగ్లోబిన్ కాన్సంట్రేషన్ (MCHC)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 150, sampleType: "Whole Blood (EDTA)" },
+  { no: 8, id: "test-8", name: "RDW", teluguName: "రెడ్ సెల్ డిస్ట్రిబ్యూషన్ విడ్త్ (RDW)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 150, sampleType: "Whole Blood (EDTA)" },
+  { no: 9, id: "test-9", name: "Total WBC Count", teluguName: "తెల్ల రక్త కణాల మొత్తం సంఖ్య (WBC)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 150, sampleType: "Whole Blood (EDTA)" },
+  { no: 10, id: "test-10", name: "Differential WBC Count", teluguName: "డిఫరెన్షియల్ డబ్ల్యూబీసీ కౌంట్", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 150, sampleType: "Whole Blood (EDTA)" },
+  { no: 11, id: "test-11", name: "Platelet Count", teluguName: "ప్లేట్‌లెట్స్ సంఖ్య (Platelets)", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 150, sampleType: "Whole Blood (EDTA)" },
+  { no: 12, id: "test-12", name: "Peripheral Smear", teluguName: "పెరిఫెరల్ స్మియర్ పరీక్ష", category: "Pathology", profileName: "Complete Blood Count (CBC)", price: 200, sampleType: "Whole Blood (EDTA)" },
+  { no: 13, id: "test-13", name: "Total Cholesterol", teluguName: "మొత్తం కొలెస్ట్రాల్ (Total Cholesterol)", category: "Biochemistry", profileName: "Full Lipid Profile", price: 150, sampleType: "Serum" },
+  { no: 14, id: "test-14", name: "HDL Cholesterol Direct", teluguName: "మంచి కొలెస్ట్రాల్ (HDL Direct)", category: "Biochemistry", profileName: "Full Lipid Profile", price: 200, sampleType: "Serum" },
+  { no: 15, id: "test-15", name: "LDL Cholesterol Direct", teluguName: "చెడు కొలెస్ట్రాల్ (LDL Direct)", category: "Biochemistry", profileName: "Full Lipid Profile", price: 200, sampleType: "Serum" },
+  { no: 16, id: "test-16", name: "LDL / HDL Ratio", teluguName: "ఎల్డిఎల్ / హెచ్డిఎల్ నిష్పత్తి", category: "Biochemistry", profileName: "Full Lipid Profile", price: 150, sampleType: "Serum" },
+  { no: 17, id: "test-17", name: "Non-HDL Cholesterol", teluguName: "నాన్-హెచ్‌డిఎల్ కొలెస్ట్రాల్", category: "Biochemistry", profileName: "Full Lipid Profile", price: 150, sampleType: "Serum" },
+  { no: 18, id: "test-18", name: "Triglycerides", teluguName: "ట్రైగ్లిజరైడ్స్ కొవ్వు స్థాయి (Triglycerides)", category: "Biochemistry", profileName: "Full Lipid Profile", price: 200, sampleType: "Serum" },
+  { no: 19, id: "test-19", name: "VLDL Cholesterol", teluguName: "విఎల్డిఎల్ కొలెస్ట్రాల్ (VLDL)", category: "Biochemistry", profileName: "Full Lipid Profile", price: 150, sampleType: "Serum" },
+  { no: 20, id: "test-20", name: "HDL / LDL Ratio", teluguName: "హెచ్డిఎల్ / ఎల్డిఎల్ నిష్పత్తి", category: "Biochemistry", profileName: "Full Lipid Profile", price: 150, sampleType: "Serum" },
+  { no: 21, id: "test-21", name: "TRIG / HDL Ratio", teluguName: "ట్రైగ్లిజరైడ్స్ / హెచ్డిఎల్ నిష్పత్తి", category: "Biochemistry", profileName: "Full Lipid Profile", price: 150, sampleType: "Serum" },
+  { no: 22, id: "test-22", name: "Apolipoprotein B (Apo B)", teluguName: "అపోలిపోప్రోటీన్ బి (Apo B)", category: "Biochemistry", profileName: "Full Lipid Profile", price: 300, sampleType: "Serum" },
+  { no: 23, id: "test-23", name: "Alkaline Phosphatase", teluguName: "ఆల్కలైన్ ఫాస్ఫటేజ్ (ALP)", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 24, id: "test-24", name: "Bilirubin – Direct", teluguName: "డైరెక్ట్ బైలిరుబిన్", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 25, id: "test-25", name: "Bilirubin – Total", teluguName: "టోటల్ బైలిరుబిన్ (పచ్చకామెర్లు)", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 26, id: "test-26", name: "Bilirubin – Indirect", teluguName: "ఇండైరెక్ట్ బైలిరుబిన్", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 27, id: "test-27", name: "Gamma Glutamyl Transferase (GGT)", teluguName: "గామా జిజిటి లీవర్ ఎంజైమ్ (GGT)", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 250, sampleType: "Serum" },
+  { no: 28, id: "test-28", name: "Protein – Total", teluguName: "మొత్తం ప్రొటీన్ (Total Protein)", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 29, id: "test-29", name: "Serum Albumin", teluguName: "సీరమ్ అల్బుమిన్", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 30, id: "test-30", name: "Serum Globulin", teluguName: "సీరమ్ గ్లోబులిన్", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 31, id: "test-31", name: "SGOT (AST)", teluguName: "ఎస్‌జిఓటి లీవర్ ఎంజైమ్ (SGOT)", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 32, id: "test-32", name: "SGPT (ALT)", teluguName: "ఎస్‌జిపిటి లీవర్ ఎంజైమ్ (SGPT)", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 33, id: "test-33", name: "Serum Albumin / Globin Ratio", teluguName: "అల్బుమిన్ / గ్లోబులిన్ నిష్పత్తి", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 34, id: "test-34", name: "SGOT / SGPT Ratio", teluguName: "ఎస్‌జిఓటి / ఎస్‌జిపిటి నిష్పత్తి", category: "Biochemistry", profileName: "Liver Function Test (LFT)", price: 150, sampleType: "Serum" },
+  { no: 35, id: "test-35", name: "BUN / Creatinine Ratio", teluguName: "బియుఎన్ / క్రియాటినిన్ నిష్పత్తి", category: "Biochemistry", profileName: "Kidney Function Test (KFT)", price: 150, sampleType: "Serum" },
+  { no: 36, id: "test-36", name: "Blood Urea Nitrogen (BUN)", teluguName: "బ్లడ్ యూరియా నైట్రోజన్ (BUN)", category: "Biochemistry", profileName: "Kidney Function Test (KFT)", price: 150, sampleType: "Serum" },
+  { no: 37, id: "test-37", name: "Calcium", teluguName: "సీరమ్ కాల్సియం (ఎముకల ఆరోగ్యం)", category: "Biochemistry", profileName: "Kidney Function Test (KFT)", price: 150, sampleType: "Serum" },
+  { no: 38, id: "test-38", name: "Uric Acid", teluguName: "యూరిక్ యాసిడ్ (కీళ్ల నొప్పులు)", category: "Biochemistry", profileName: "Kidney Function Test (KFT)", price: 150, sampleType: "Serum" },
+  { no: 39, id: "test-39", name: "Serum Creatinine", teluguName: "సీరమ్ క్రియాటినిన్ (కిడ్నీ పరీక్ష)", category: "Biochemistry", profileName: "Kidney Function Test (KFT)", price: 150, sampleType: "Serum" },
+  { no: 40, id: "test-40", name: "Urea (Calculated)", teluguName: "యూరియా పరిమాణం", category: "Biochemistry", profileName: "Kidney Function Test (KFT)", price: 150, sampleType: "Serum" },
+  { no: 41, id: "test-41", name: "eGFR", teluguName: "ఇజిఎఫ్ఆర్ కిడ్నీ ఫిల్ట్రేషన్ రేటు", category: "Biochemistry", profileName: "Kidney Function Test (KFT)", price: 150, sampleType: "Serum" },
+  { no: 42, id: "test-42", name: "Urea / Serum Creatinine Ratio", teluguName: "యూరియా / క్రియాటినిన్ నిష్పత్తి", category: "Biochemistry", profileName: "Kidney Function Test (KFT)", price: 150, sampleType: "Serum" },
+  { no: 43, id: "test-43", name: "Phosphorus", teluguName: "సీరమ్ ఫాస్ఫరస్", category: "Biochemistry", profileName: "Kidney Function Test (KFT)", price: 150, sampleType: "Serum" },
+  { no: 44, id: "test-44", name: "Total Iron Binding Capacity (TIBC)", teluguName: "మొత్తం ఐరన్ బైండింగ్ సామర్థ్యం (TIBC)", category: "Immunology", profileName: "Iron Deficiency Profile", price: 250, sampleType: "Serum" },
+  { no: 45, id: "test-45", name: "Serum Iron", teluguName: "సీరమ్ ఐరన్ (రక్తంలో ఇనుము)", category: "Immunology", profileName: "Iron Deficiency Profile", price: 200, sampleType: "Serum" },
+  { no: 46, id: "test-46", name: "% Transferrin Saturation", teluguName: "ట్రాన్స్‌ఫరిన్ శాచురేషన్ శాతం", category: "Immunology", profileName: "Iron Deficiency Profile", price: 200, sampleType: "Serum" },
+  { no: 47, id: "test-47", name: "UIBC", teluguName: "అన్‌సాత్యురేటెడ్ ఐరన్ బైండింగ్ (UIBC)", category: "Immunology", profileName: "Iron Deficiency Profile", price: 200, sampleType: "Serum" },
+  { no: 48, id: "test-48", name: "Sodium", teluguName: "సోడియం (Sodium - లవణాల స్థాయి)", category: "Biochemistry", profileName: "Electrolytes Profile", price: 150, sampleType: "Serum" },
+  { no: 49, id: "test-49", name: "Chloride", teluguName: "క్లోరైడ్ (Chloride)", category: "Biochemistry", profileName: "Electrolytes Profile", price: 150, sampleType: "Serum" },
+  { no: 50, id: "test-50", name: "HbA1c", teluguName: "హెచ్‌బిఎ1సి (3 నెలల షుగర్ సగటు)", category: "Biochemistry", profileName: "Diabetic Screen & HbA1c", price: 300, sampleType: "Whole Blood (EDTA)" },
+  { no: 51, id: "test-51", name: "Average Blood Glucose", teluguName: "సగటు రక్తపు గ్లూకోజ్ (eAG)", category: "Biochemistry", profileName: "Diabetic Screen & HbA1c", price: 100, sampleType: "Fluoride Plasma" },
+  { no: 52, id: "test-52", name: "Serum Amylase", teluguName: "సీరమ్ ఎమైలేజ్ (పాంక్రియాస్)", category: "Biochemistry", profileName: "Pancreas Profile", price: 250, sampleType: "Serum" },
+  { no: 53, id: "test-53", name: "Serum Lipase", teluguName: "సీరమ్ లైపేజ్ (పాంక్రియాస్)", category: "Biochemistry", profileName: "Pancreas Profile", price: 250, sampleType: "Serum" },
+  { no: 54, id: "test-54", name: "T3", teluguName: "టి3 థైరాయిడ్ హార్మోన్ (T3)", category: "Immunology", profileName: "Thyroid Profile", price: 150, sampleType: "Serum" },
+  { no: 55, id: "test-55", name: "T4", teluguName: "టి4 థైరాయిడ్ హార్మోన్ (T4)", category: "Immunology", profileName: "Thyroid Profile", price: 150, sampleType: "Serum" },
+  { no: 56, id: "test-56", name: "TSH (uTSH)", teluguName: "టిఎస్‌హెచ్ థైరాయిడ్ హార్మోన్ (uTSH)", category: "Immunology", profileName: "Thyroid Profile", price: 200, sampleType: "Serum" },
+];
+
+export const profileDiagnosticTests: DiagnosticTest[] = [
   {
     id: "cbc",
     name: "Complete Blood Count (CBC)",
@@ -31,17 +104,18 @@ export const diagnosticTests: DiagnosticTest[] = [
     preparation: "No fasting required",
     description: "Evaluates overall health and detects a wide range of conditions including anemia, infection, and leukemia using automated 5-part differential technology.",
     parameters: [
-      "Complete Hemogram",
+      "Complete Hemogram (CBC)",
       "RBC Count",
       "Hemoglobin",
       "PCV (HCT)",
-      "MCV, MCH, MCHC",
+      "MCV",
+      "MCH",
+      "MCHC",
       "RDW",
       "Total WBC Count",
-      "Differential WBC Count (5-Part)",
+      "Differential WBC Count",
       "Platelet Count",
       "Peripheral Smear",
-      "Malaria Flagging Indicator",
     ],
   },
   {
@@ -58,12 +132,12 @@ export const diagnosticTests: DiagnosticTest[] = [
       "Total Cholesterol",
       "HDL Cholesterol Direct",
       "LDL Cholesterol Direct",
-      "LDL/HDL Ratio",
+      "LDL / HDL Ratio",
       "Non-HDL Cholesterol",
       "Triglycerides",
       "VLDL Cholesterol",
-      "HDL/LDL Ratio",
-      "TRIG/HDL Ratio",
+      "HDL / LDL Ratio",
+      "TRIG / HDL Ratio",
       "Apolipoprotein B (Apo B)",
     ],
   },
@@ -79,17 +153,17 @@ export const diagnosticTests: DiagnosticTest[] = [
     description: "Comprehensive assessment of liver enzymes, bilirubin levels, and protein synthesis.",
     parameters: [
       "Alkaline Phosphatase",
-      "Bilirubin-Direct",
-      "Bilirubin-Total",
-      "Bilirubin-Indirect",
+      "Bilirubin – Direct",
+      "Bilirubin – Total",
+      "Bilirubin – Indirect",
       "Gamma Glutamyl Transferase (GGT)",
-      "Protein-Total",
+      "Protein – Total",
       "Serum Albumin",
       "Serum Globulin",
       "SGOT (AST)",
       "SGPT (ALT)",
-      "Serum Albumin/Globulin Ratio",
-      "SGOT/SGPT Ratio",
+      "Serum Albumin / Globin Ratio",
+      "SGOT / SGPT Ratio",
     ],
   },
   {
@@ -103,14 +177,14 @@ export const diagnosticTests: DiagnosticTest[] = [
     preparation: "No special preparation needed",
     description: "Evaluates renal filtration efficacy, electrolyte retention, urea, creatinine, and uric acid levels.",
     parameters: [
-      "BUN/Creatinine Ratio",
+      "BUN / Creatinine Ratio",
       "Blood Urea Nitrogen (BUN)",
       "Calcium",
       "Uric Acid",
       "Serum Creatinine",
       "Urea (Calculated)",
       "eGFR",
-      "Urea/Sr. Creatinine Ratio",
+      "Urea / Serum Creatinine Ratio",
       "Phosphorus",
     ],
   },
@@ -124,7 +198,7 @@ export const diagnosticTests: DiagnosticTest[] = [
     turnaroundTime: "6-8 Hours",
     preparation: "Morning sample preferred; no fasting required",
     description: "Evaluates thyroid gland activity using ultra-sensitive Snibe MAGLUMI X3 Chemiluminescence Immunoassay.",
-    parameters: ["T3 (Triiodothyronine)", "T4 (Thyroxine)", "TSH (Ultra-sensitive TSH)"],
+    parameters: ["T3", "T4", "TSH (uTSH)"],
   },
   {
     id: "hba1c-diabetic",
@@ -136,7 +210,7 @@ export const diagnosticTests: DiagnosticTest[] = [
     turnaroundTime: "2-4 Hours",
     preparation: "8-10 hours fasting for Fasting Blood Sugar",
     description: "Monitors 3-month average blood glucose control and immediate fasting/postprandial glucose levels.",
-    parameters: ["HbA1c (Glycated Hemoglobin)", "Average Blood Glucose (eAG)", "Fasting Blood Sugar"],
+    parameters: ["HbA1c", "Average Blood Glucose", "Fasting Blood Sugar"],
   },
   {
     id: "iron-profile",
@@ -160,7 +234,7 @@ export const diagnosticTests: DiagnosticTest[] = [
     turnaroundTime: "3 Hours",
     preparation: "No fasting required",
     description: "Assesses essential blood electrolyte balance for nerve, muscle, and kidney health.",
-    parameters: ["Serum Sodium", "Serum Chloride"],
+    parameters: ["Sodium", "Chloride"],
   },
   {
     id: "pancreas-profile",
@@ -235,3 +309,24 @@ export const diagnosticTests: DiagnosticTest[] = [
     parameters: ["HBsAg (Hepatitis B)", "Anti-HCV (Hepatitis C)", "HAV IgM (Hepatitis A)"],
   },
 ];
+
+// Combine profile tests and all 56 individual test entries so everything can be searched and booked
+const individualDiagnosticTests: DiagnosticTest[] = medicalTests56.map((item) => ({
+  id: item.id,
+  name: item.name,
+  teluguName: item.teluguName,
+  category: item.category,
+  price: item.price,
+  sampleType: item.sampleType,
+  turnaroundTime: "Same Day (2-6 Hours)",
+  preparation: "Standard Lab Instructions",
+  description: `Individual medical test for ${item.name} (Part of ${item.profileName}).`,
+  isIndividualTest: true,
+  profileName: item.profileName,
+}));
+
+export const diagnosticTests: DiagnosticTest[] = [
+  ...profileDiagnosticTests,
+  ...individualDiagnosticTests,
+];
+
