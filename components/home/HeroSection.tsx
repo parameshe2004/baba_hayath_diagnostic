@@ -52,7 +52,7 @@ export default function HeroSection() {
           <ScrollReveal delay={0.3}>
             <div className="pt-2">
               <Link
-                href="/#packages"
+                href="/book"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs font-black uppercase tracking-wider bg-white text-[#0B3B60] hover:bg-[#10B981] hover:text-white shadow-2xl transition-all duration-300 group"
               >
                 BOOK CHECKUP

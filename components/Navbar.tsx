@@ -3,11 +3,17 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X, Calendar } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isHomePage = pathname === "/";
+  // On non-home pages (like /book, /services, /contact), or when scrolled on home page, use visible light navbar theme with dark text
+  const isLightNav = !isHomePage || scrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,8 +35,8 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#FAF7F2]/90 backdrop-blur-md py-3.5 border-b border-black/10 shadow-sm"
+        isLightNav
+          ? "bg-[#FAF7F2]/95 backdrop-blur-md py-3.5 border-b border-black/10 shadow-sm"
           : "bg-transparent py-5"
       }`}
     >
@@ -38,7 +44,7 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-md group-hover:scale-105 transition-transform duration-300">
+          <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-md group-hover:scale-105 transition-transform duration-300 border border-white/20">
             <Image
               src="/photos/logo.jpeg"
               alt="BHDC Logo"
@@ -48,12 +54,12 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col">
             <span className={`text-base sm:text-lg font-bold font-serif-luxury leading-none transition-colors ${
-              scrolled ? "text-[#0B3B60]" : "text-white"
+              isLightNav ? "text-[#0B3B60]" : "text-white"
             }`}>
               Baba Hayaath
             </span>
             <span className={`text-[9px] sm:text-[10px] font-bold uppercase tracking-wider leading-none mt-1 ${
-              scrolled ? "text-[#10B981]" : "text-emerald-400"
+              isLightNav ? "text-[#10B981]" : "text-emerald-400"
             }`}>
               Diagnostic Centre
             </span>
@@ -66,8 +72,8 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-xs font-semibold uppercase tracking-[0.15em] transition-colors relative py-1 group ${
-                scrolled ? "text-[#2D2D2D] hover:text-[#10B981]" : "text-slate-200 hover:text-emerald-300"
+              className={`text-xs font-bold uppercase tracking-[0.15em] transition-colors relative py-1 group ${
+                isLightNav ? "text-[#1A1A1A] hover:text-[#10B981]" : "text-slate-200 hover:text-emerald-300"
               }`}
             >
               {link.name}
@@ -91,7 +97,7 @@ export default function Navbar() {
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className={`lg:hidden p-2 rounded-xl transition-colors ${
-            scrolled ? "bg-black/5 text-[#1A1A1A]" : "bg-white/10 text-white"
+            isLightNav ? "bg-black/5 text-[#1A1A1A]" : "bg-white/10 text-[#1A1A1A]"
           }`}
           aria-label="Toggle menu"
         >
@@ -118,7 +124,7 @@ export default function Navbar() {
             <Link
               href="/book"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-3 text-center text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-[#0B3B60] to-[#10B981] rounded-full block shadow-md flex items-center justify-center gap-2"
+              className="w-full py-3 text-center text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-[#0B3B60] to-[#10B981] rounded-full shadow-md flex items-center justify-center gap-2"
             >
               <Calendar className="w-4 h-4" />
               BOOK APPOINTMENT
